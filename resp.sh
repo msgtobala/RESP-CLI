@@ -130,7 +130,7 @@ fi
 step+=1
 
 # Install prettier
-declare -i $configure_prettier
+declare -i $configure_prettier="false"
 if [ "$prettier_option" == "yes" ]; then
   if [ -f ".prettierrc.js" -o -f "prettier.config.js" -o -f ".prettierrc.yaml" -o -f ".prettierrc.yml" -o -f ".prettierrc.json" -o -f ".prettierrc.toml" -o -f ".prettierrc" ]; then
     configure_prettier="false"
