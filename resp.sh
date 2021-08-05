@@ -173,7 +173,8 @@ if [ "$configure_prettier" == false ] && [ "$style_guides" == "Airbnb" ]; then
     "react",
   ],
   "rules": {
-  }' >> .eslintrc${config_extension}
+  }
+}' >> .eslintrc${config_extension}
 elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Google" ]; then
   echo "Hello"
 elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Standard" ]; then
