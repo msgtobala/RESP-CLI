@@ -144,7 +144,7 @@ if [ "$stylelint_option" == "yes" ]; then
   echo '{
   "extends": "stylelint-config-recommended",
   "rules": {}
-' >> .stylelintrc.json
+}' >> .stylelintrc.json
   touch tmp.json
   $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
   sed -e '/"scripts": {/a\
