@@ -151,7 +151,7 @@ echo "${configure_prettier}"
 echo "${style_guides}"
 # Perform Configration
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Perform Configuration${NC}"
-if [ "$configure_prettier" == false && "$style_guides" == "Airbnb" ]; then
+if [[ "$configure_prettier" == false && "$style_guides" == "Airbnb" ]]; then
   echo "Hai"
   > ".eslintrc${config_extension}"
   echo ${config_opening}'"env": {
@@ -174,15 +174,15 @@ if [ "$configure_prettier" == false && "$style_guides" == "Airbnb" ]; then
   ],
   "rules": {
   }' >> .eslintrc${config_extension}
-elif [ "$configure_prettier" == false && "$style_guides" == "Google" ]; then
+elif [[ "$configure_prettier" == false && "$style_guides" == "Google" ]]; then
   echo "Hello"
-elif [ "$configure_prettier" == false && "$style_guides" == "Standard" ]; then
+elif [[ "$configure_prettier" == false && "$style_guides" == "Standard" ]]; then
   echo "Hello"
-elif [ "$configure_prettier" == true && "$style_guides" == "Airbnb" ]; then
+elif [[ "$configure_prettier" == true && "$style_guides" == "Airbnb" ]]; then
   echo "Hello"
-elif [ "$configure_prettier" == true && "$style_guides" == "Google" ]; then
+elif [[ "$configure_prettier" == true && "$style_guides" == "Google" ]]; then
   echo "Hello"
-elif [ "$configure_prettier" == true && "$style_guides" == "Standard" ]; then
+elif [[ "$configure_prettier" == true && "$style_guides" == "Standard" ]]; then
   echo "Hello"
 else
   echo "Hello"
