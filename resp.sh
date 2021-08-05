@@ -149,21 +149,21 @@ else
 fi
 
 # Perform Configration
-if [ "$do_prettier" == false && "$style_guides" == "Airbnb" ] then
-  echo "Hai"
-elif [ "$do_prettier" == false && "$style_guides" == "Google" ]
-  echo "Hello"
-elif [ "$do_prettier" == false && "$style_guides" == "Standard" ]
-  echo "Hello"
-elif [ "$do_prettier" == true && "$style_guides" == "Airbnb" ]
-  echo "Hello"
-elif [ "$do_prettier" == true && "$style_guides" == "Google" ]
-  echo "Hello"
-elif [ "$do_prettier" == true && "$style_guides" == "Standard" ]
-  echo "Hello"
-else
-  echo "Hello"
-fi
+# if [ "$do_prettier" == false && "$style_guides" == "Airbnb" ] then
+#   echo "Hai"
+# elif [ "$do_prettier" == false && "$style_guides" == "Google" ]
+#   echo "Hello"
+# elif [ "$do_prettier" == false && "$style_guides" == "Standard" ]
+#   echo "Hello"
+# elif [ "$do_prettier" == true && "$style_guides" == "Airbnb" ]
+#   echo "Hello"
+# elif [ "$do_prettier" == true && "$style_guides" == "Google" ]
+#   echo "Hello"
+# elif [ "$do_prettier" == true && "$style_guides" == "Standard" ]
+#   echo "Hello"
+# else
+#   echo "Hello"
+# fi
 
 # Install and cofigure stylelint
 if [ "$stylelint_option" == "yes" ]; then
