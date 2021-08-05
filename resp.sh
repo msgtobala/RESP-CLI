@@ -143,15 +143,7 @@ if [ "$stylelint_option" == "yes" ]; then
   > ".stylelintrc.json"
   echo '{
   "extends": "stylelint-config-recommended",
-  "rules": {
-    "property-no-unknown": [
-      true,
-      {
-        "ignoreProperties": ["/^cls-/"]
-      }
-    ]
-  }
-}
+  "rules": {}
 ' >> .stylelintrc.json
   touch tmp.json
   $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
