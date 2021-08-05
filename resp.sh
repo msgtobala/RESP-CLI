@@ -44,7 +44,7 @@ if [ -f ".eslintrc.js" -o -f ".eslintrc.yaml" -o -f ".eslintrc.yml" -o -f ".esli
   echo
   exit;
 else
-  echo -e "✅${GREEN} No Existing ESLint file found${NC}"
+  echo -e "✅${GREEN} No existing ESLint file found${NC}"
 fi
 echo
 
@@ -114,7 +114,7 @@ echo -e "📢 Creating lint files from the configuration..."
 declare -i step=1
 declare -i total_steps=5
 echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing ESLint${NC}"
-# $pkg_cmd -D eslint
+$pkg_cmd -D eslint
 step+=1
 
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing style guide${NC}"
@@ -127,8 +127,11 @@ else
 fi
 step+=1
 
+$existing_prettier = -f ".prettierrc.js" -o -f "prettier.config.js" -o -f ".prettierrc.yaml" -o -f ".prettierrc.yml" -o -f ".prettierrc.json" -o -f ".prettierrc.toml" -o -f ".prettierrc"
+echo "${existing_prettier}"
 if [ "$prettier_option" == "yes" ]; then
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing Prettier${NC}"
+  $pkg_cmd -D prettier
   step+=1
 else
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Skipping Prettier setup${NC}"
