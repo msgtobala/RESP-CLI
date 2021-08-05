@@ -140,6 +140,18 @@ fi
 
 if [ "$stylelint_option" == "yes" ]; then
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing and Configuring Stylelint${NC}"
+  > ".stylelintrc.json"
+  echo '{
+    "extends": "stylelint-config-recommended",
+    "rules": {
+      "property-no-unknown": [
+        true,
+        {
+          "ignoreProperties": ["/^cls-/"]
+        }
+      ]
+    }
+  }' >> .stylelintrc.json
   touch tmp.json
   $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
   sed -e '/"scripts": {/a\
