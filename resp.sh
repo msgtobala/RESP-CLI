@@ -127,7 +127,7 @@ else
 fi
 step+=1
 
-$existing_prettier = -f ".prettierrc.js" -o -f "prettier.config.js" -o -f ".prettierrc.yaml" -o -f ".prettierrc.yml" -o -f ".prettierrc.json" -o -f ".prettierrc.toml" -o -f ".prettierrc"
+declare -i existing_prettier = -f ".prettierrc.js" -o -f "prettier.config.js" -o -f ".prettierrc.yaml" -o -f ".prettierrc.yml" -o -f ".prettierrc.json" -o -f ".prettierrc.toml" -o -f ".prettierrc"
 echo "${existing_prettier}"
 if [ "$prettier_option" == "yes" ]; then
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing Prettier${NC}"
@@ -142,16 +142,17 @@ if [ "$stylelint_option" == "yes" ]; then
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing and Configuring Stylelint${NC}"
   > ".stylelintrc.json"
   echo '{
-    "extends": "stylelint-config-recommended",
-    "rules": {
-      "property-no-unknown": [
-        true,
-        {
-          "ignoreProperties": ["/^cls-/"]
-        }
-      ]
-    }
-  }' >> .stylelintrc.json
+  "extends": "stylelint-config-recommended",
+  "rules": {
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["/^cls-/"]
+      }
+    ]
+  }
+}
+' >> .stylelintrc.json
   touch tmp.json
   $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
   sed -e '/"scripts": {/a\
