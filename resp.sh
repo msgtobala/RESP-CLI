@@ -109,6 +109,7 @@ done
 echo -e "🙂 Preffering Prettier ${GREEN}${stylelint_option}${NC}"
 echo
 
+# Start the lint configurations
 echo -e "📢 Creating lint files from the configuration..."
 
 declare -i step=1
@@ -117,6 +118,7 @@ echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing ESLint${NC}"
 $pkg_cmd -D eslint
 step+=1
 
+# Install style guides
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing style guide${NC}"
 if [ "$style_guides" == "Airbnb" ]; then
   $pkg_cmd -D eslint-plugin-react eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react-hooks
@@ -127,26 +129,65 @@ else
 fi
 step+=1
 
-declare -i existing_prettier = -f ".prettierrc.js" -o -f "prettier.config.js" -o -f ".prettierrc.yaml" -o -f ".prettierrc.yml" -o -f ".prettierrc.json" -o -f ".prettierrc.toml" -o -f ".prettierrc"
-echo "${existing_prettier}"
+# Install prettier
+declare $do_prettier
 if [ "$prettier_option" == "yes" ]; then
-  echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing Prettier${NC}"
-  $pkg_cmd -D prettier
+  if [ -f ".prettierrc.js" -o -f "prettier.config.js" -o -f ".prettierrc.yaml" -o -f ".prettierrc.yml" -o -f ".prettierrc.json" -o -f ".prettierrc.toml" -o -f ".prettierrc" ]; then
+    do_prettier=false
+    ls -a | grep "prettier*" | xargs -n 1 basename
+    echo -e "⭕ ${DGREY}[${step}/${total_steps}] ${LCYAN}Existing Prettier found.Skipping Prettier setup${NC}"
+  else
+    echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing Prettier${NC}"
+    do_prettier=true
+    $pkg_cmd -D prettier
+  fi
   step+=1
 else
+  do_prettier=false
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Skipping Prettier setup${NC}"
   step+=1
 fi
 
+# Perform Configration
+if [ "$do_prettier" == false && "$style_guides" == "Airbnb" ] then
+  > ".eslintc${config_extension}"
+  echo ${config_opening}'env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+  ],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+  ],
+  rules: {
+  }' >> .eslintc${config_extension}
+elif [ "$do_prettier" == false && "$style_guides" == "Google" ]
+elif [ "$do_prettier" == false && "$style_guides" == "Standard" ]
+elif [ "$do_prettier" == true && "$style_guides" == "Airbnb" ]
+elif [ "$do_prettier" == true && "$style_guides" == "Google" ]
+elif [ "$do_prettier" == true && "$style_guides" == "Standard" ]
+fi
+
+# Install and cofigure stylelint
 if [ "$stylelint_option" == "yes" ]; then
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing and Configuring Stylelint${NC}"
+  $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
   > ".stylelintrc.json"
   echo '{
   "extends": "stylelint-config-recommended",
   "rules": {}
 }' >> .stylelintrc.json
   touch tmp.json
-  $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
   sed -e '/"scripts": {/a\
     "lint:css": "stylelint \\"src/**/*.js\\"",\
     "lint": "npm run lint:js && npm run lint:css",
@@ -158,7 +199,6 @@ else
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Skipping Stylelint setup${NC}"
   step+=1
 fi
-
 
 echo
 echo -e "${LCYAN}npm run lint:js"
