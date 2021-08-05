@@ -151,6 +151,27 @@ fi
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Perform Configuration${NC}"
 if [ "$configure_prettier" == false && "$style_guides" == "Airbnb" ] then
   echo "Hai"
+  > ".eslintrc${config_extension}"
+  echo ${config_opening}'"env": {
+    "browser": true,
+    "es2021": true,
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+    },
+    "ecmaVersion": 12,
+    "sourceType": 'module',
+  },
+  "plugins": [
+    "react",
+  ],
+  "rules": {
+  }' >> .eslintrc${config_extension}
 elif [ "$configure_prettier" == false && "$style_guides" == "Google" ]
   echo "Hello"
 elif [ "$configure_prettier" == false && "$style_guides" == "Standard" ]
