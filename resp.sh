@@ -106,7 +106,7 @@ select stylelint_config in "Yes" "No"; do
     No ) stylelint_option='no'; break;;
   esac
 done
-echo -e "🙂 Preffering Prettier ${GREEN}${stylelint_option}${NC}"
+echo -e "🙂 Preffering JSS Linting ${GREEN}${stylelint_option}${NC}"
 echo
 
 # Start the lint configurations
@@ -177,17 +177,64 @@ if [ "$configure_prettier" == false ] && [ "$style_guides" == "Airbnb" ]; then
   }
 }' >> .eslintrc${config_extension}
 elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Google" ]; then
-  echo "Hello"
+  > ".eslintrc${config_extension}"
+  echo ${config_opening}'
+  "env": {
+        "browser": true,
+        "es2021": true,
+        "commonjs": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "google"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
+}' >> .eslintrc${config_extension}
 elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Standard" ]; then
-  echo "Hello"
+  > ".eslintrc${config_extension}"
+  echo ${config_opening}'
+  "env": {
+        "browser": true,
+        "es2021": true,
+        "commonjs": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
+}' >> .eslintrc${config_extension}
 elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Airbnb" ]; then
-  echo "Hello"
+  > ".eslintrc${config_extension}"
+  echo ${config_opening}'' >> .eslintrc${config_extension}
 elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Google" ]; then
-  echo "Hello"
+  > ".eslintrc${config_extension}"
+  echo ${config_opening}'' >> .eslintrc${config_extension}
 elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Standard" ]; then
-  echo "Hello"
-else
-  echo "Hello"
+  > ".eslintrc${config_extension}"
+  echo ${config_opening}'' >> .eslintrc${config_extension}
 fi
 step+=1
 
