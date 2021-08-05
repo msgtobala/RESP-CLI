@@ -130,20 +130,20 @@ fi
 step+=1
 
 # Install prettier
-declare -i $configure_prettier=false
+declare -i $configure_prettier
 if [ "$prettier_option" == "yes" ]; then
   if [ -f ".prettierrc.js" -o -f "prettier.config.js" -o -f ".prettierrc.yaml" -o -f ".prettierrc.yml" -o -f ".prettierrc.json" -o -f ".prettierrc.toml" -o -f ".prettierrc" ]; then
-    configure_prettier=false
+    configure_prettier="false"
     ls -a | grep "prettier*" | xargs -n 1 basename
     echo -e "⭕ ${DGREY}[${step}/${total_steps}] ${LCYAN}Existing Prettier found.Skipping Prettier setup${NC}"
   else
     echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing Prettier${NC}"
-    configure_prettier=true
+    configure_prettier="true"
     $pkg_cmd -D prettier
   fi
   step+=1
 else
-  configure_prettier=false
+  configure_prettier="false"
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Skipping Prettier setup${NC}"
   step+=1
 fi
