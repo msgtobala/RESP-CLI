@@ -130,36 +130,36 @@ fi
 step+=1
 
 # Install prettier
-declare $do_prettier
+declare -i $configure_prettier=false
 if [ "$prettier_option" == "yes" ]; then
   if [ -f ".prettierrc.js" -o -f "prettier.config.js" -o -f ".prettierrc.yaml" -o -f ".prettierrc.yml" -o -f ".prettierrc.json" -o -f ".prettierrc.toml" -o -f ".prettierrc" ]; then
-    do_prettier=false
+    configure_prettier=false
     ls -a | grep "prettier*" | xargs -n 1 basename
     echo -e "⭕ ${DGREY}[${step}/${total_steps}] ${LCYAN}Existing Prettier found.Skipping Prettier setup${NC}"
   else
     echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing Prettier${NC}"
-    do_prettier=true
+    configure_prettier=true
     $pkg_cmd -D prettier
   fi
   step+=1
 else
-  do_prettier=false
+  configure_prettier=false
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Skipping Prettier setup${NC}"
   step+=1
 fi
 
 # Perform Configration
-# if [ "$do_prettier" == false && "$style_guides" == "Airbnb" ] then
+# if [ "$configure_prettier" == false && "$style_guides" == "Airbnb" ] then
 #   echo "Hai"
-# elif [ "$do_prettier" == false && "$style_guides" == "Google" ]
+# elif [ "$configure_prettier" == false && "$style_guides" == "Google" ]
 #   echo "Hello"
-# elif [ "$do_prettier" == false && "$style_guides" == "Standard" ]
+# elif [ "$configure_prettier" == false && "$style_guides" == "Standard" ]
 #   echo "Hello"
-# elif [ "$do_prettier" == true && "$style_guides" == "Airbnb" ]
+# elif [ "$configure_prettier" == true && "$style_guides" == "Airbnb" ]
 #   echo "Hello"
-# elif [ "$do_prettier" == true && "$style_guides" == "Google" ]
+# elif [ "$configure_prettier" == true && "$style_guides" == "Google" ]
 #   echo "Hello"
-# elif [ "$do_prettier" == true && "$style_guides" == "Standard" ]
+# elif [ "$configure_prettier" == true && "$style_guides" == "Standard" ]
 #   echo "Hello"
 # else
 #   echo "Hello"
