@@ -150,14 +150,14 @@ fi
 
 # Perform Configration
 if [ "$do_prettier" == false && "$style_guides" == "Airbnb" ] then
-  > ".eslintc${config_extension}"
+  > ".eslintrc${config_extension}"
   echo ${config_opening}'env: {
     browser: true,
     es2021: true,
   },
   extends: [
-    'plugin:react/recommended',
-    'airbnb',
+    "plugin:react/recommended",
+    "airbnb",
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -167,15 +167,22 @@ if [ "$do_prettier" == false && "$style_guides" == "Airbnb" ] then
     sourceType: 'module',
   },
   plugins: [
-    'react',
+    "react",
   ],
   rules: {
-  }' >> .eslintc${config_extension}
+  }' >> .eslintrc${config_extension}
 elif [ "$do_prettier" == false && "$style_guides" == "Google" ]
+  echo "Hello"
 elif [ "$do_prettier" == false && "$style_guides" == "Standard" ]
+  echo "Hello"
 elif [ "$do_prettier" == true && "$style_guides" == "Airbnb" ]
+  echo "Hello"
 elif [ "$do_prettier" == true && "$style_guides" == "Google" ]
+  echo "Hello"
 elif [ "$do_prettier" == true && "$style_guides" == "Standard" ]
+  echo "Hello"
+else
+  echo "Hello"
 fi
 
 # Install and cofigure stylelint
