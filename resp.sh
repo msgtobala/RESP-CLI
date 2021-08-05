@@ -137,7 +137,7 @@ fi
 if [ "$stylelint_option" == "yes" ]; then
   echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing and Configuring Stylelint${NC}"
   touch tmp.json
-  # $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
+  $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
   sed -e '/"scripts": {/a\
     "lint:css": "stylelint \\"src/**/*.js\\"",\
     "lint": "npm run lint:js && npm run lint:css",
