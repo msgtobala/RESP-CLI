@@ -116,12 +116,26 @@ echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing ESLint${NC}"
 # $pkg_cmd -D eslint
 step+=1
 
-echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing and Configuring style guide${NC}"
+echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing style guide${NC}"
+if [ "$style_guides" == "Airbnb" ]; then
+  $pkg_cmd -D eslint-plugin-react eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react-hooks
+elif [ "$style_guides" == "Google" ]; then
+  $pkg_cmd -D eslint-config-google eslint-plugin-react
+else
+  $pkg_cmd -D eslint-plugin-react eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise
+fi
 step+=1
+
+if [ "$prettier_option" == "yes" ]; then
+  echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing Prettier${NC}"
+  step+=1
+else
+  echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Skipping Prettier setup${NC}"
+  step+=1
+fi
 
 if [ "$stylelint_option" == "yes" ]; then
   echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing and Configuring Stylelint${NC}"
-  step+=1
   touch tmp.json
   # $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
   sed -e '/"scripts": {/a\
@@ -130,6 +144,7 @@ if [ "$stylelint_option" == "yes" ]; then
 ' package.json > tmp.json
   cat tmp.json > package.json; 
   rm tmp.json
+  step+=1
 else
   echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Skipping Stylelint setup${NC}"
   step+=1
