@@ -153,23 +153,25 @@ echo "${style_guides}"
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Perform Configuration${NC}"
 if [ "$configure_prettier" == false ] && [ "$style_guides" == "Airbnb" ]; then
   > ".eslintrc${config_extension}"
-  echo ${config_opening}'"env": {
+  echo ${config_opening}'
+  "env": {
     "browser": true,
     "es2021": true,
+    "commonjs": true
   },
   "extends": [
     "plugin:react/recommended",
-    "airbnb",
+    "airbnb"
   ],
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true,
+      "jsx": true
     },
     "ecmaVersion": 12,
-    "sourceType": 'module',
+    "sourceType": "module"
   },
   "plugins": [
-    "react",
+    "react"
   ],
   "rules": {
   }
