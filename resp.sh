@@ -21,9 +21,9 @@ NC='\033[0m' # No Color
 echo
 echo -e "⌛️ Initializing ${LCYAN}RESP(React + ESLint + Prettier) ${NC}CLI ⏳"
 echo
-echo -e "🔍 Searching for ${LBLUE}package.json${NC}"
 
 # Check for valid package.json
+echo -e "🔍 Searching for ${LBLUE}package.json${NC}"
 if [ -e package.json ]
 then
     echo -e "✅ ${GREEN}Found package.json${NC}"
@@ -46,8 +46,8 @@ if [ -f ".eslintrc.js" -o -f ".eslintrc.yaml" -o -f ".eslintrc.yml" -o -f ".esli
 else
   echo -e "✅${GREEN} No Existing ESLint file found${NC}"
 fi
-
 echo
+
 echo -e "🚀${LCYAN} Preparing configuration settings...${NC}"
 echo
 
@@ -112,11 +112,12 @@ echo
 echo -e "📢 Creating lint files from the configuration..."
 
 declare -i step=1
+declare -i total_steps=5
 echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing ESLint${NC}"
 # $pkg_cmd -D eslint
 step+=1
 
-echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing style guide${NC}"
+echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing style guide${NC}"
 if [ "$style_guides" == "Airbnb" ]; then
   $pkg_cmd -D eslint-plugin-react eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react-hooks
 elif [ "$style_guides" == "Google" ]; then
@@ -127,15 +128,15 @@ fi
 step+=1
 
 if [ "$prettier_option" == "yes" ]; then
-  echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing Prettier${NC}"
+  echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing Prettier${NC}"
   step+=1
 else
-  echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Skipping Prettier setup${NC}"
+  echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Skipping Prettier setup${NC}"
   step+=1
 fi
 
 if [ "$stylelint_option" == "yes" ]; then
-  echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing and Configuring Stylelint${NC}"
+  echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing and Configuring Stylelint${NC}"
   touch tmp.json
   $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
   sed -e '/"scripts": {/a\
@@ -146,7 +147,7 @@ if [ "$stylelint_option" == "yes" ]; then
   rm tmp.json
   step+=1
 else
-  echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Skipping Stylelint setup${NC}"
+  echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Skipping Stylelint setup${NC}"
   step+=1
 fi
 
