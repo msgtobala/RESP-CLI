@@ -148,21 +148,23 @@ else
 fi
 
 # Perform Configration
-# if [ "$configure_prettier" == false && "$style_guides" == "Airbnb" ] then
-#   echo "Hai"
-# elif [ "$configure_prettier" == false && "$style_guides" == "Google" ]
-#   echo "Hello"
-# elif [ "$configure_prettier" == false && "$style_guides" == "Standard" ]
-#   echo "Hello"
-# elif [ "$configure_prettier" == true && "$style_guides" == "Airbnb" ]
-#   echo "Hello"
-# elif [ "$configure_prettier" == true && "$style_guides" == "Google" ]
-#   echo "Hello"
-# elif [ "$configure_prettier" == true && "$style_guides" == "Standard" ]
-#   echo "Hello"
-# else
-#   echo "Hello"
-# fi
+echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Perform Configuration${NC}"
+if [ "$configure_prettier" == false && "$style_guides" == "Airbnb" ] then
+  echo "Hai"
+elif [ "$configure_prettier" == false && "$style_guides" == "Google" ]
+  echo "Hello"
+elif [ "$configure_prettier" == false && "$style_guides" == "Standard" ]
+  echo "Hello"
+elif [ "$configure_prettier" == true && "$style_guides" == "Airbnb" ]
+  echo "Hello"
+elif [ "$configure_prettier" == true && "$style_guides" == "Google" ]
+  echo "Hello"
+elif [ "$configure_prettier" == true && "$style_guides" == "Standard" ]
+  echo "Hello"
+else
+  echo "Hello"
+fi
+step+=1
 
 # Install and cofigure stylelint
 if [ "$stylelint_option" == "yes" ]; then
