@@ -152,7 +152,6 @@ echo "${style_guides}"
 # Perform Configration
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Perform Configuration${NC}"
 if [ "$configure_prettier" == false ] && [ "$style_guides" == "Airbnb" ]; then
-  echo "Hai"
   > ".eslintrc${config_extension}"
   echo ${config_opening}'"env": {
     "browser": true,
