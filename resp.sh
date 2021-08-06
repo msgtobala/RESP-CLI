@@ -375,15 +375,15 @@ rm tmp.json
 
 echo
 echo -e "${LCYAN}npm run lint:js"
-echo -e "${NC}Checks for lint errors in the JS"
+echo -e "${NC}👍 Checks for lint errors in the JS"
 echo
 
 echo -e "${LCYAN}npm run lint:css"
-echo -e "${NC}Checks for lint errors in the JSS"
+echo -e "${NC}👉 Checks for lint errors in the JSS"
 echo
 
 echo -e "${LCYAN}npm run lint"
-echo -e "${NC}Checks for lint errors in the both JS and JSS"
+echo -e "${NC}🤙 Checks for lint errors in the both JS and JSS"
 echo
 
 echo -e "🔴 Finishing the Lint setup..."
