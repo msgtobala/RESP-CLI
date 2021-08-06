@@ -180,7 +180,7 @@ else
 fi
 
 echo "$configure_prettier"
-echo "$style_guides"
+echo "$guide"
 # Perform Configration
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Perform Configuration${NC}"
 if [ "$configure_prettier" == false ] && [ "$guide" == "Airbnb" ]; then
