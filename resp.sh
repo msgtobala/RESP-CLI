@@ -389,5 +389,5 @@ echo
 echo -e "🔴 Finishing the Lint setup..."
 echo -e "✅ Setup Completed"
 echo -e "🌟 ${GREEN}Happy Linting!!! 😇💫"
-echo -e "Please add a 🌟 here: https://github.com/msgtobala/RESP-CLI/blob/master/resp.sh"
+echo -e "${NC}Please add a 🌟 here: https://github.com/msgtobala/RESP-CLI/blob/master/resp.sh"
 echo
