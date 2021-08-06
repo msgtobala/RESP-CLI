@@ -348,18 +348,22 @@ if [ "$stylelint_option" == "yes" ]; then
   "extends": "stylelint-config-recommended",
   "rules": {}
 }' >>.stylelintrc.json
-  touch tmp.json
-  sed -e '/"scripts": {/a\
-    "lint:css": "stylelint \\"src/**/*.js\\"",\
-    "lint": "npm run lint:js && npm run lint:css",
-' package.json >tmp.json
-  cat tmp.json >package.json
-  rm tmp.json
   step+=1
 else
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Skipping Stylelint setup${NC}"
   step+=1
 fi
+
+# Add Lint scripts to package.json
+echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Adding Lint scripts to package.json${NC}"
+touch tmp.json
+sed -e '/"scripts": {/a\
+  "lint:css": "stylelint \\"src/**/*.js\\"",\
+  "lint": "npm run lint:js && npm run lint:css",
+' package.json >tmp.json
+cat tmp.json >package.json
+rm tmp.json
+
 
 echo
 echo -e "${LCYAN}npm run lint:js"
