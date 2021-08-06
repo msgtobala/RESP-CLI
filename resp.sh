@@ -179,8 +179,6 @@ else
   step+=1
 fi
 
-echo "$configure_prettier"
-echo "$guide"
 # Perform Configration
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Perform Configuration${NC}"
 if [ "$configure_prettier" == false ] && [ "$guide" == "Airbnb" ]; then
@@ -274,10 +272,10 @@ elif [ "$configure_prettier" == true ] && [ "$guide" == "Airbnb" ]; then
 elif [ "$configure_prettier" == true ] && [ "$guide" == "Google" ]; then
   >".prettierrc.json"
     echo '{
-    "printWidth": 80,
-    "singleQuote": true,
-    "trailingComma": "all"
-  }' >> .prettierrc.json
+  "printWidth": 80,
+  "singleQuote": true,
+  "trailingComma": "all"
+}' >> .prettierrc.json
   >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
@@ -306,10 +304,10 @@ elif [ "$configure_prettier" == true ] && [ "$guide" == "Standard" ]; then
   echo "I am in"
   >".prettierrc.json"
     echo '{
-    "printWidth": 80,
-    "singleQuote": true,
-    "trailingComma": "all"
-  }' >> .prettierrc.json
+  "printWidth": 80,
+  "singleQuote": true,
+  "trailingComma": "all"
+}' >> .prettierrc.json
   >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
