@@ -358,9 +358,9 @@ fi
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Adding Lint scripts to package.json${NC}"
 touch tmp.json
 sed -e '/"scripts": {/a\
-  "lint:css": "stylelint \\"src/**/*.js\\"",\
-  "lint": "npm run lint:js && npm run lint:css",
-' package.json >tmp.json
+    "lint:css": "stylelint \\"src/**/*.js\\"",\
+    "lint": "npm run lint:js && npm run lint:css",
+' package.json > tmp.json
 cat tmp.json >package.json
 rm tmp.json
 
