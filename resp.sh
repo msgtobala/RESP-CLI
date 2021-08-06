@@ -80,7 +80,9 @@ select config_extension in ".js" ".json" "Cancel"; do
     config_opening='{'
     break
     ;;
-  Cancel) exit ;;
+  Cancel) 
+    echo -e "⭕ Oops! Something went wrong"
+    exit ;;
   esac
 done
 echo -e "🙂 Your preffered format is ${GREEN}${config_extension}${NC}"
