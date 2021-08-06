@@ -152,9 +152,9 @@ step+=1
 
 # Install style guides
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing style guide${NC}"
-if [ "$style_guides" == "Airbnb" ]; then
+if [ "$guide" == "Airbnb" ]; then
   $pkg_cmd -D eslint-plugin-react eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react-hooks
-elif [ "$style_guides" == "Google" ]; then
+elif [ "$guide" == "Google" ]; then
   $pkg_cmd -D eslint-config-google eslint-plugin-react
 else
   $pkg_cmd -D eslint-plugin-react eslint-config-standard eslint-plugin-import eslint-plugin-node eslint-plugin-promise
@@ -183,7 +183,7 @@ echo "$configure_prettier"
 echo "$style_guides"
 # Perform Configration
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Perform Configuration${NC}"
-if [ "$configure_prettier" == false ] && [ "$style_guides" == "Airbnb" ]; then
+if [ "$configure_prettier" == false ] && [ "$guide" == "Airbnb" ]; then
   >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
@@ -202,7 +202,7 @@ if [ "$configure_prettier" == false ] && [ "$style_guides" == "Airbnb" ]; then
   "plugins": ["react"],
   "rules": {}
 }' >>.eslintrc${config_extension}
-elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Google" ]; then
+elif [ "$configure_prettier" == false ] && [ "$guide" == "Google" ]; then
   >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
@@ -221,7 +221,7 @@ elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Google" ]; then
   "plugins": ["react"],
   "rules": {}
 }' >>.eslintrc${config_extension}
-elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Standard" ]; then
+elif [ "$configure_prettier" == false ] && [ "$guide" == "Standard" ]; then
   >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
@@ -240,7 +240,7 @@ elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Standard" ]; th
   "plugins": ["react"],
   "rules": {}
 }' >>.eslintrc${config_extension}
-elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Airbnb" ]; then
+elif [ "$configure_prettier" == true ] && [ "$guide" == "Airbnb" ]; then
   >".prettierrc.json"
   echo '{
   "printWidth": 80,
@@ -271,7 +271,7 @@ elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Airbnb" ]; then
     "prettier/prettier": "error"
   }
 }' >>.eslintrc${config_extension}
-elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Google" ]; then
+elif [ "$configure_prettier" == true ] && [ "$guide" == "Google" ]; then
   >".prettierrc.json"
     echo '{
     "printWidth": 80,
@@ -302,7 +302,7 @@ elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Google" ]; then
     "prettier/prettier": "error"
   }
 }' >>.eslintrc${config_extension}
-elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Standard" ]; then
+elif [ "$configure_prettier" == true ] && [ "$guide" == "Standard" ]; then
   echo "I am in"
   >".prettierrc.json"
     echo '{
