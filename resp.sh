@@ -62,7 +62,9 @@ select package_command_choices in "npm" "Yarn" "Cancel"; do
     pkg_cmd='yarn add'
     break
     ;;
-  Cancel) exit ;;
+  Cancel)
+    echo -e "⭕ Oops! Something went wrong"
+    exit ;;
   esac
 done
 echo -e "🙂 You are using ${GREEN}${package_command_choices}${NC}"
