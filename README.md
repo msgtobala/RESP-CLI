@@ -4,6 +4,12 @@ A CLI to simplify React ESLint setup. I built this CLI since I felt Reinventing 
 
 Spoiler Alert!!!😜 - I am a Newbie to bash script. Please forgive me for the worst syntax. Also, feel free to contribute to improve it.
 
+## Supported Flaours
+
+1. Ubuntu
+2. macOS
+3. Windows(only with WSL).Read this to see how to run this script in windows <https://www.thewindowsclub.com/how-to-run-sh-or-shell-script-file-in-windows-10>
+
 ## How to use
 
 1. Navigate to your React project\
@@ -99,7 +105,7 @@ Spoiler Alert!!!😜 - I am a Newbie to bash script. Please forgive me for the w
 }
 ```
 
-## Links
+## References
 
 Read how I created this CLI
 <https://balajisblog.com/adding-eslint-to-js-and-react/>
