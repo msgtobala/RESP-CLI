@@ -64,7 +64,8 @@ select package_command_choices in "npm" "Yarn" "Cancel"; do
     ;;
   Cancel)
     echo -e "⭕ Oops! Something went wrong"
-    exit ;;
+    exit
+    ;;
   esac
 done
 echo -e "🙂 You are using ${GREEN}${package_command_choices}${NC}"
@@ -82,9 +83,10 @@ select config_extension in ".js" ".json" "Cancel"; do
     config_opening='{'
     break
     ;;
-  Cancel) 
+  Cancel)
     echo -e "⭕ Oops! Something went wrong"
-    exit ;;
+    exit
+    ;;
   esac
 done
 echo -e "🙂 Your preffered format is ${GREEN}${config_extension}${NC}"
@@ -248,7 +250,7 @@ elif [ "$configure_prettier" == true ] && [ "$guide" == "Airbnb" ]; then
   "printWidth": 80,
   "singleQuote": true,
   "trailingComma": "all"
-}' >> .prettierrc.json
+}' >>.prettierrc.json
   >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
@@ -275,11 +277,11 @@ elif [ "$configure_prettier" == true ] && [ "$guide" == "Airbnb" ]; then
 }' >>.eslintrc${config_extension}
 elif [ "$configure_prettier" == true ] && [ "$guide" == "Google" ]; then
   >".prettierrc.json"
-    echo '{
+  echo '{
   "printWidth": 80,
   "singleQuote": true,
   "trailingComma": "all"
-}' >> .prettierrc.json
+}' >>.prettierrc.json
   >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
@@ -307,11 +309,11 @@ elif [ "$configure_prettier" == true ] && [ "$guide" == "Google" ]; then
 elif [ "$configure_prettier" == true ] && [ "$guide" == "Standard" ]; then
   echo "I am in"
   >".prettierrc.json"
-    echo '{
+  echo '{
   "printWidth": 80,
   "singleQuote": true,
   "trailingComma": "all"
-}' >> .prettierrc.json
+}' >>.prettierrc.json
   >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
@@ -362,15 +364,14 @@ if [ "$stylelint_option" == "yes" ]; then
       "lint:js": "eslint \"src/**/*.{js,jsx}\"",\
       "lint:css": "stylelint \\"src/**/*.js\\"",\
       "lint": "npm run lint:js && npm run lint:css",
-  ' package.json > tmp.json
+  ' package.json >tmp.json
 else
   sed -e '/"scripts": {/a\
       "lint:js": "eslint \"src/**/*.{js,jsx}\"",,
-  ' package.json > tmp.json
+  ' package.json >tmp.json
 fi
 cat tmp.json >package.json
 rm tmp.json
-
 
 echo
 echo -e "${LCYAN}npm run lint:js"
