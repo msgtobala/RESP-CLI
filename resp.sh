@@ -357,10 +357,17 @@ fi
 # Add Lint scripts to package.json
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Adding Lint scripts to package.json${NC}"
 touch tmp.json
-sed -e '/"scripts": {/a\
-    "lint:css": "stylelint \\"src/**/*.js\\"",\
-    "lint": "npm run lint:js && npm run lint:css",
-' package.json > tmp.json
+if [ "$stylelint_option" == "yes" ]; then
+  sed -e '/"scripts": {/a\
+      "lint:js": "eslint \"src/**/*.{js,jsx}\"",\
+      "lint:css": "stylelint \\"src/**/*.js\\"",\
+      "lint": "npm run lint:js && npm run lint:css",
+  ' package.json > tmp.json
+else
+  sed -e '/"scripts": {/a\
+      "lint:js": "eslint \"src/**/*.{js,jsx}\"",,
+  ' package.json > tmp.json
+fi
 cat tmp.json >package.json
 rm tmp.json
 
