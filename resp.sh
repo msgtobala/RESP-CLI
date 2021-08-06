@@ -24,13 +24,12 @@ echo
 
 # Check for valid package.json
 echo -e "🔍 Searching for ${LBLUE}package.json${NC}"
-if [ -e package.json ]
-then
-    echo -e "✅ ${GREEN}Found package.json${NC}"
+if [ -e package.json ]; then
+  echo -e "✅ ${GREEN}Found package.json${NC}"
 else
-    echo -e ${RED}"⭕ Error! No package.json found${NC}"
-    echo -e "${YELLOW}💡 Tip: Create one with npm init${NC}"
-    exit;
+  echo -e ${RED}"⭕ Error! No package.json found${NC}"
+  echo -e "${YELLOW}💡 Tip: Create one with npm init${NC}"
+  exit
 fi
 echo
 
@@ -42,7 +41,7 @@ if [ -f ".eslintrc.js" -o -f ".eslintrc.yaml" -o -f ".eslintrc.yml" -o -f ".esli
   echo
   echo -e "${RED}CAUTION:${NC} There is loading priority when more than one config file is present: https://eslint.org/docs/user-guide/configuring#configuration-file-formats"
   echo
-  exit;
+  exit
 else
   echo -e "✅${GREEN} No existing ESLint file found${NC}"
 fi
@@ -55,9 +54,15 @@ echo
 echo -e "🧐 Which ${LBLUE}package manager${NC} are you using?"
 select package_command_choices in "npm" "Yarn" "Cancel"; do
   case $package_command_choices in
-    npm ) pkg_cmd='npm install'; break;;
-    Yarn ) pkg_cmd='yarn add'; break;;
-    Cancel ) exit;;
+  npm)
+    pkg_cmd='npm install'
+    break
+    ;;
+  Yarn)
+    pkg_cmd='yarn add'
+    break
+    ;;
+  Cancel) exit ;;
   esac
 done
 echo -e "🙂 You are using ${GREEN}${package_command_choices}${NC}"
@@ -67,9 +72,15 @@ echo
 echo -e "🧐 Which ${LBLUE}ESLint format${NC} do you prefer?"
 select config_extension in ".js" ".json" "Cancel"; do
   case $config_extension in
-    .js ) config_opening='module.exports = {'; break;;
-    .json ) config_opening='{'; break;;
-    Cancel ) exit;;
+  .js)
+    config_opening='module.exports = {'
+    break
+    ;;
+  .json)
+    config_opening='{'
+    break
+    ;;
+  Cancel) exit ;;
   esac
 done
 echo -e "🙂 Your preffered format is ${GREEN}${config_extension}${NC}"
@@ -79,9 +90,18 @@ echo
 echo -e "🧐 Which ${LBLUE}Style guide ${NC}do you prefer?"
 select style_guides in "Standard(default)" "Airbnb" "Google"; do
   case $style_guides in
-    Standard\(default\) ) guide='Standard'; break;;
-    Airbnb ) guide='Airbnb'; break;;
-    Google ) guide='Google'; break;;
+  Standard\(default\))
+    guide='Standard'
+    break
+    ;;
+  Airbnb)
+    guide='Airbnb'
+    break
+    ;;
+  Google)
+    guide='Google'
+    break
+    ;;
   esac
 done
 echo -e "🙂 Your preffered style guide is ${GREEN}${guide}${NC}"
@@ -91,8 +111,14 @@ echo
 echo -e "🧐 You want ${LBLUE}Prettier ${NC}to be installed?"
 select prettier_config in "Yes" "No"; do
   case $prettier_config in
-    Yes ) prettier_option='yes'; break;;
-    No ) prettier_option='no'; break;;
+  Yes)
+    prettier_option='yes'
+    break
+    ;;
+  No)
+    prettier_option='no'
+    break
+    ;;
   esac
 done
 echo -e "🙂 Preffering Prettier ${GREEN}${prettier_option}${NC}"
@@ -102,8 +128,14 @@ echo
 echo -e "🧐 You want ${LBLUE}JSS Linting ${NC}to be installed?"
 select stylelint_config in "Yes" "No"; do
   case $stylelint_config in
-    Yes ) stylelint_option='yes'; break;;
-    No ) stylelint_option='no'; break;;
+  Yes)
+    stylelint_option='yes'
+    break
+    ;;
+  No)
+    stylelint_option='no'
+    break
+    ;;
   esac
 done
 echo -e "🙂 Preffering JSS Linting ${GREEN}${stylelint_option}${NC}"
@@ -113,7 +145,7 @@ echo
 echo -e "📢 Creating lint files from the configuration..."
 
 declare -i step=1
-declare -i total_steps=5
+declare -i total_steps=6
 echo -e "💡 ${DGREY}[${step}/5] ${LCYAN}Installing ESLint${NC}"
 $pkg_cmd -D eslint
 step+=1
@@ -138,7 +170,7 @@ if [ "$prettier_option" == "yes" ]; then
   else
     echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing Prettier${NC}"
     configure_prettier=true
-    $pkg_cmd -D prettier
+    $pkg_cmd -D prettier eslint-config-prettier eslint-plugin-prettier
   fi
   step+=1
 else
@@ -147,12 +179,10 @@ else
   step+=1
 fi
 
-echo "${configure_prettier}"
-echo "${style_guides}"
 # Perform Configration
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Perform Configuration${NC}"
 if [ "$configure_prettier" == false ] && [ "$style_guides" == "Airbnb" ]; then
-  > ".eslintrc${config_extension}"
+  >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
     "browser": true,
@@ -169,9 +199,9 @@ if [ "$configure_prettier" == false ] && [ "$style_guides" == "Airbnb" ]; then
   },
   "plugins": ["react"],
   "rules": {}
-}' >> .eslintrc${config_extension}
+}' >>.eslintrc${config_extension}
 elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Google" ]; then
-  > ".eslintrc${config_extension}"
+  >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
     "browser": true,
@@ -188,9 +218,9 @@ elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Google" ]; then
   },
   "plugins": ["react"],
   "rules": {}
-}' >> .eslintrc${config_extension}
+}' >>.eslintrc${config_extension}
 elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Standard" ]; then
-  > ".eslintrc${config_extension}"
+  >".eslintrc${config_extension}"
   echo ${config_opening}'
   "env": {
     "browser": true,
@@ -207,16 +237,100 @@ elif [ "$configure_prettier" == false ] && [ "$style_guides" == "Standard" ]; th
   },
   "plugins": ["react"],
   "rules": {}
-}' >> .eslintrc${config_extension}
+}' >>.eslintrc${config_extension}
 elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Airbnb" ]; then
-  > ".eslintrc${config_extension}"
-  echo ${config_opening}'' >> .eslintrc${config_extension}
+  >".prettierrc.json"
+  echo '{
+  "printWidth": 80,
+  "singleQuote": true,
+  "trailingComma": "all"
+}' >> .prettierrc.json
+  >".eslintrc${config_extension}"
+  echo ${config_opening}'
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "commonjs": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}' >>.eslintrc${config_extension}
 elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Google" ]; then
-  > ".eslintrc${config_extension}"
-  echo ${config_opening}'' >> .eslintrc${config_extension}
+  >".prettierrc.json"
+    echo '{
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }' >> .prettierrc.json
+  >".eslintrc${config_extension}"
+  echo ${config_opening}'
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "commonjs": true
+  },
+  "extends": [
+    "google",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}' >>.eslintrc${config_extension}
 elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Standard" ]; then
-  > ".eslintrc${config_extension}"
-  echo ${config_opening}'' >> .eslintrc${config_extension}
+  >".prettierrc.json"
+    echo '{
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "all"
+  }' >> .prettierrc.json
+  >".eslintrc${config_extension}"
+  echo ${config_opening}'
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "commonjs": true
+  },
+  "extends": [
+    "standard",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}' >>.eslintrc${config_extension}
 fi
 step+=1
 
@@ -224,17 +338,17 @@ step+=1
 if [ "$stylelint_option" == "yes" ]; then
   echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Installing and Configuring Stylelint${NC}"
   $pkg_cmd -D stylelint stylelint-config-recommended stylelint-config-styled-components stylelint-processor-styled-components
-  > ".stylelintrc.json"
+  >".stylelintrc.json"
   echo '{
   "extends": "stylelint-config-recommended",
   "rules": {}
-}' >> .stylelintrc.json
+}' >>.stylelintrc.json
   touch tmp.json
   sed -e '/"scripts": {/a\
     "lint:css": "stylelint \\"src/**/*.js\\"",\
     "lint": "npm run lint:js && npm run lint:css",
-' package.json > tmp.json
-  cat tmp.json > package.json; 
+' package.json >tmp.json
+  cat tmp.json >package.json
   rm tmp.json
   step+=1
 else
