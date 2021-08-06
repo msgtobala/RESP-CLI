@@ -179,6 +179,8 @@ else
   step+=1
 fi
 
+echo "$configure_prettier"
+echo "$style_guides"
 # Perform Configration
 echo -e "💡 ${DGREY}[${step}/${total_steps}] ${LCYAN}Perform Configuration${NC}"
 if [ "$configure_prettier" == false ] && [ "$style_guides" == "Airbnb" ]; then
@@ -301,6 +303,7 @@ elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Google" ]; then
   }
 }' >>.eslintrc${config_extension}
 elif [ "$configure_prettier" == true ] && [ "$style_guides" == "Standard" ]; then
+  echo "I am in"
   >".prettierrc.json"
     echo '{
     "printWidth": 80,
