@@ -27,8 +27,6 @@ Spoiler Alert!!!😜 - I am a Newbie to bash script. Please forgive me for the w
 
 4. That's it. Your ESLint is ready. Look for `eslintrc`, `stylelintrc`, `prettierrc` files in the project root directory.
 
-----
-
 ## Packages
 
 1. [ESLint](https://eslint.org/)
