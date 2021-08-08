@@ -18,7 +18,7 @@ Spoiler Alert!!!😜 - I am a Newbie to bash script. Please forgive me for the w
 2. Run the below command\
 ```exec 3<&1;bash <&3 <(curl https://raw.githubusercontent.com/msgtobala/RESP-CLI/master/resp.sh 2> /dev/null)```
 
-3. Select your configurations\
+3. Select your configurations
     * Package Manager - npm/yarn
     * ESLint format - .js/.json
     * Style guide - Standard/Airbnb/Google
