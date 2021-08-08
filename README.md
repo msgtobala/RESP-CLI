@@ -1,10 +1,10 @@
 # RESP CLI
 
-A CLI to simplify React ESLint setup. I built this CLI since I felt Reinventing the wheel of ESLint for React is quite a repeated process.
+A CLI to simplify React ESLint setup. I built this CLI since I felt reinventing the wheel of ESLint for React is quite a repeated process.
 
 Spoiler Alert!!!😜 - I am a Newbie to bash script. Please forgive me for the worst syntax. Also, feel free to contribute to improve it.
 
-## Supported Flaours
+## Supported Flavours
 
 1. Ubuntu
 2. macOS
