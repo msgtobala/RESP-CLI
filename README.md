@@ -106,7 +106,7 @@ Spoiler Alert!!!😜 - I am a Newbie to bash script. Please forgive me for the w
 ## References
 
 Read how I created this CLI
-<https://balajisblog.com/adding-eslint-to-js-and-react/>
+<https://balajisblog.com/i-created-a-cliresp-cli-for-eslint-react/>
 
-Read the detailed article on configuring ESLint
+Read the detailed article on configuring ESLint for React
 <https://balajisblog.com/adding-eslint-to-js-and-react/>
