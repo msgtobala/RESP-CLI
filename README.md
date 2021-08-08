@@ -8,7 +8,7 @@ Spoiler Alert!!!😜 - I am a Newbie to bash script. Please forgive me for the w
 
 1. Ubuntu
 2. macOS
-3. Windows(only with WSL).Read this to see how to run this script in windows <https://www.thewindowsclub.com/how-to-run-sh-or-shell-script-file-in-windows-10>
+3. Windows(only with WSL).Read this to install WSL <https://www.thewindowsclub.com/how-to-run-sh-or-shell-script-file-in-windows-10>
 
 ## How to use
 
